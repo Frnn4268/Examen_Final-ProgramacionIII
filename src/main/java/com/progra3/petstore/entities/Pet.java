@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "mascotas")
@@ -18,11 +20,20 @@ public class Pet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(name = "name")
+	@NotBlank(message = "Debe de ingresar un nombre")
 	private String name;
+	
+	@Column(name = "price")
+	@NotNull(message = "Debe de ingresar un precio")
 	private double price;
-	@Column(name = "birth_day")
+	
+	@Column(name = "birthday")
+	@NotNull(message ="Debe de ingresar una fecha")
 	@Temporal(TemporalType.DATE)
 	private Date birthDay;
+	
 	public Long getId() {
 		return id;
 	}
@@ -48,6 +59,4 @@ public class Pet {
 		this.birthDay = birthDay;
 	}
 	
-	
-
 }
